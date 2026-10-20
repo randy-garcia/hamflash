@@ -1,6 +1,9 @@
-# Ham Radio License Flashcards
+# Ham Radio License Flashcards (vibe coded with Gemini)
 
 A lightweight, zero-dependency, single-file web application for studying FCC Amateur Radio License question pools (**Technician**, **General**, and **Amateur Extra**). Built for responsive mobile and desktop use, it features local browser storage, interactive card flipping, keyboard/touch navigation, custom question pool importing, and progress export/restore capabilities.
+
+
+<img width="624" height="1105" alt="hamflash1" src="https://github.com/user-attachments/assets/602c4664-5e7e-49ef-9eb1-326467db1497" />
 
 ---
 
