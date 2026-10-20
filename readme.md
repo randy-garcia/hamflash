@@ -52,6 +52,8 @@ Click **Import Pool** inside the app to load official NCVEC text files or JSON a
 The parser natively handles all common amateur radio JSON schemas, including:
 
 #### Format A: Explicit Answer Array
+
+works well with the question pool published by @russolsen   https://github.com/russolsen/ham_radio_question_pool/tree/main
 ```json
 [
   {
