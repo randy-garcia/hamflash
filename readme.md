@@ -1,20 +1,23 @@
-# Ham Radio License Flashcards (vibe coded with Gemini)
-
-A lightweight, zero-dependency, single-file web application for studying FCC Amateur Radio License question pools (**Technician**, **General**, and **Amateur Extra**). Built for responsive mobile and desktop use, it features local browser storage, interactive card flipping, keyboard/touch navigation, custom question pool importing, and progress export/restore capabilities.
 
 
-<img width="624" height="1105" alt="hamflash1" src="https://github.com/user-attachments/assets/602c4664-5e7e-49ef-9eb1-326467db1497" />
+<center><img width="624" height="1105" alt="hamflash1" src="https://github.com/user-attachments/assets/602c4664-5e7e-49ef-9eb1-326467db1497" /></center>
+
+# Ham Radio License Flashcards & Quiz Engine
+
+A lightweight, zero-dependency, single-file web application for studying FCC Amateur Radio License question pools (**Technician**, **General**, and **Amateur Extra**). Built for responsive mobile and desktop use, it features persistent browser storage, dual study modes (Flashcards & Quiz), full option context display, custom pool importing, and multi-device backup sync.
 
 ---
 
 ## Features
 
-* ⚡ **Zero External Dependencies**: Standard HTML5, CSS3, and ES6 JavaScript wrapped into a standalone file. Operates completely offline without external APIs or web frameworks.
-* 📱 **Mobile & Desktop Optimized**: Responsive dark-mode interface with card flip animations and touch-swipe gestures for mobile study.
-* 📥 **Universal Question Importer**: Automatically parses official NCVEC text pool files as well as multiple standard JSON schema formats.
-* 💾 **Persistent Browser Storage**: Automatically saves imported question pools, mastery stats, and card review states to browser `localStorage`.
-* 📦 **Multi-Device Backup & Sync**: Export complete progress and pool state to a JSON backup file to transfer study data seamlessly across devices.
-* ⌨️ **Keyboard Navigation**: Designed for rapid desktop flashcard repetition.
+* 📇 **Flashcard Mode**: Fast card-flipping study mode. Shows the correct answer prominently on flip, with the full set of choices (distractors) displayed by default for complete context.
+* 📝 **Interactive Quiz Mode**: Test mode with 4-option multiple-choice questions, instant visual feedback (correct/incorrect highlighting), live streak counter, and automatic score/mastery updates.
+* ⚡ **Zero External Dependencies**: Plain HTML5, CSS3, and ES6 JavaScript inside a single standalone file. Works completely offline without external frameworks or APIs.
+* 📱 **Mobile & Desktop Optimized**: Dark-mode UI with smooth 3D card flip animations, touch controls, and keyboard navigation.
+* 📥 **Universal Question Importer**: Auto-parses standard NCVEC text files and multiple JSON schema formats, resolving correct answer keys (`A-D` / `0-3`) into plain text.
+* 💾 **Persistent Local Storage**: Saves imported question pools, mastery stats, and card review states directly in your browser.
+* 📦 **Multi-Device Backup & Restore**: Export your progress and question pools into a portable `.json` backup file to sync across machines.
+* 🗑️ **Question Pool Management**: Reset study progress (`Mastered` / `Needs Review`) or wipe individual class pools independently.
 
 ---
 
@@ -22,12 +25,31 @@ A lightweight, zero-dependency, single-file web application for studying FCC Ama
 
 ### Option 1: Direct File Usage
 1. Clone or download this repository.
-2. Open `index.html` directly in any web browser (Safari, Chrome, Firefox, Edge).
+2. Open `index.html` in any web browser (Chrome, Safari, Firefox, Edge).
 
 ### Option 2: Host via GitHub Pages
-1. Push `index.html` to the `main` branch of your repository.
-2. Enable **GitHub Pages** under **Repository Settings > Pages**.
-3. Access your study app from any mobile or desktop browser via the generated URL.
+1. Push `index.html` to the `main` branch of your GitHub repository.
+2. Navigate to **Repository Settings > Pages**.
+3. Select `main` branch as the source and save.
+4. Access your study app from any device via the generated GitHub Pages URL.
+
+---
+
+## Study Modes
+
+### 📇 Flashcard Mode
+* Tap or press `Space` to flip between the question and the answer.
+* The correct answer appears in blue at the top of the card back.
+* The full list of choices is expanded below it (correct answer highlighted in green; wrong options dimmed).
+* Click **🙈 Hide Options** / **👁️ Show All Options** on the back of any card to toggle choice visibility.
+* Use **Right** / **Wrong** buttons or hotkeys to track your mastery.
+
+### 📝 Quiz Mode
+* Switch to **Quiz Mode** using the top header toggle.
+* Renders questions with interactive choice buttons ($A, B, C, D$).
+* Click an option to lock in your answer:
+  * **Correct**: Highlighted in green, increments your current streak, marks the card as **Mastered**.
+  * **Incorrect**: Highlighted in red, reveals the correct option in green, resets streak to `0`, marks the card as **Needs Review**.
 
 ---
 
@@ -35,25 +57,23 @@ A lightweight, zero-dependency, single-file web application for studying FCC Ama
 
 | Key | Action |
 | --- | --- |
-| `Space` | Flip card (Toggle Question / Answer) |
-| `→` (Right Arrow) | Advance to Next Card |
-| `←` (Left Arrow) | Go to Previous Card |
-| `1` or `M` | Mark Card as **Right / Mastered** |
-| `2` or `R` | Mark Card as **Wrong / Needs Review** |
+| `Space` | Flip card (Flashcard Mode) |
+| `→` (Right Arrow) | Next Card / Question |
+| `←` (Left Arrow) | Previous Card / Question |
+| `1` or `M` | Mark as **Right / Mastered** (Flashcard Mode) |
+| `2` or `R` | Mark as **Wrong / Needs Review** (Flashcard Mode) |
 
 ---
 
 ## Question Pool Formats & Importing
 
-Click **Import Pool** inside the app to load official NCVEC text files or JSON arrays for your desired license class. The importer automatically resolves correct answer letters (`A`, `B`, `C`, `D` or `0`, `1`, `2`, `3`) to display the explicit answer text on the back of the flashcard.
+Click **Import Pool** inside the app to load pool files for the active license class (`Technician`, `General`, or `Extra`). You can drag and drop `.json` or `.txt` files or paste text directly into the import dialog.
 
 ### Supported JSON Schemas
 
-The parser natively handles all common amateur radio JSON schemas, including:
+The import engine handles all common ham radio question formats:
 
 #### Format A: Explicit Answer Array
-
-works well with the question pool published by @russolsen   https://github.com/russolsen/ham_radio_question_pool/tree/main
 ```json
 [
   {
